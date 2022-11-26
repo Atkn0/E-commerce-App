@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="3dp"
+    app:layout_scrollFlags="scroll|enterAlways"
+    android:layout_alignParentTop="true">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_height="match_parent"
+        android:id="@+id/FlexBoxLayout"
+        app:justifyContent="space_between"
+        app:flexDirection="row">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="letgo"
+            app:layout_alignSelf="center"
+            android:textAlignment="center"
+            android:textColor="#FF3A59"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_icon">
+
+        </ImageButton>
+
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+</androidx.appcompat.widget.Toolbar>
