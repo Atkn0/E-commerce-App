@@ -25,7 +25,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:background="#e2e4e3"
-
             android:layout_height="match_parent">
 
             <com.google.android.material.card.MaterialCardView

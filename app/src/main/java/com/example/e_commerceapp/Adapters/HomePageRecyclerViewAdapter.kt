@@ -17,7 +17,7 @@ class HomePageRecyclerViewAdapter:RecyclerView.Adapter<HomePageRecyclerViewAdapt
     }
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-        holder.binding.TestLayout
+        holder.binding.ProductLayout
     }
 
     override fun getItemCount(): Int {

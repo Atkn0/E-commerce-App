@@ -1,21 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/TestLayout"
-    android:padding="0dp"
+    android:id="@+id/ProductLayout"
+    android:orientation="vertical"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="5dp"
     android:layout_margin="0dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RelativeLayout">
+
+        <ImageView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/profile_icon"
+            android:id="@+id/ProductImageView">
+
+        </ImageView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:foregroundGravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="60dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content"
+            android:id="@+id/FavoriteButtonCardView">
+
+            <ImageView
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_favorite_border_24">
+
+            </ImageView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </RelativeLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:textAlignment="center"
+        android:id="@+id/PriceTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "DENEME TEXT"
-        android:textSize="30sp"
-        tools:ignore="HardcodedText">
+        android:textSize="25sp"
+        android:layout_marginStart="15dp"
+        android:text="9.700 TL"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText" />
 
-    </TextView>
+    <TextView
+        android:id="@+id/ProductNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:text="Asus laptop dizüstü bilgisayar"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText" />
+
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
 import com.example.e_commerceapp.R
@@ -30,7 +31,7 @@ class HomePageFragment : Fragment() {
 
         binding.ReycylerView.adapter = adapter
         binding.ReycylerView.setHasFixedSize(true)
-        binding.ReycylerView.layoutManager = LinearLayoutManager(context)
+        binding.ReycylerView.layoutManager = GridLayoutManager(context,2)
 
 
         return view
