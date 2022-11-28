@@ -9,5 +9,14 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.e_commerceapp.Views.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_favouritePageFragment"
+            app:destination="@id/favouritePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritePageFragment"
+        android:name="com.example.e_commerceapp.Views.FavouritePageFragment"
+        android:label="fragment_favourite_page"
+        tools:layout="@layout/fragment_favourite_page" />
 </navigation>
