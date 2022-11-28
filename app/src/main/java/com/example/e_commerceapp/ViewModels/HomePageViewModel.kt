@@ -8,7 +8,7 @@ import com.example.e_commerceapp.data.PhotoApiService
 class HomePageViewModel:ViewModel() {
 
     private var apiService = PhotoApiService()
-    val productModelList = MutableLiveData<List<ProductModel>>()
+    val productModelList = MutableLiveData<ArrayList<ProductModel>>()
 
 
     suspend fun getAllProducts(){

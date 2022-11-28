@@ -9,6 +9,6 @@ interface ProductApi {
     //base url : https://fakestoreapi.com/
 
     @GET("products")
-    suspend fun getProducts(): List<ProductModel>
+    suspend fun getProducts(): ArrayList<ProductModel>
 
 }

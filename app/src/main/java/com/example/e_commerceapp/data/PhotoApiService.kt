@@ -16,7 +16,7 @@ class PhotoApiService {
 
     val api = retrofit.create(ProductApi::class.java)
 
-    suspend fun getApiFromService () : List<ProductModel>{
+    suspend fun getApiFromService () : ArrayList<ProductModel>{
         return api.getProducts()
     }
 
