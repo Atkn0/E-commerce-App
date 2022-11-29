@@ -1,5 +1,6 @@
 package com.example.e_commerceapp.Adapters
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +12,14 @@ import com.squareup.picasso.Picasso
 
 class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
     class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    }
+
+
+    fun filterList(filterList:ArrayList<ProductModel>){
+
+        list = filterList
+        notifyDataSetChanged()
 
     }
 

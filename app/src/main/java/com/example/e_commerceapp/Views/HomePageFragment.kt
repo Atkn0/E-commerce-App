@@ -5,15 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
+import com.example.e_commerceapp.Models.ProductModel
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.ViewModels.HomePageViewModel
 import com.example.e_commerceapp.databinding.FragmentHomePageBinding
 import kotlinx.coroutines.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomePageFragment : Fragment() {
 
@@ -34,6 +39,7 @@ class HomePageFragment : Fragment() {
         binding = FragmentHomePageBinding.inflate(inflater)
         val view = binding.root
         val adapter = HomePageRecyclerViewAdapter(arrayListOf())
+        var lastAdapterList = ArrayList<ProductModel>()
 
         viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
 
@@ -50,8 +56,45 @@ class HomePageFragment : Fragment() {
         viewModel.productModelList.observe(viewLifecycleOwner, Observer {
 
             adapter.updateAdapter(it)
+            lastAdapterList = it
 
         })
+
+        //filter function
+        fun filter(text:String){
+
+            val filteredList:ArrayList<ProductModel> = ArrayList<ProductModel>()
+
+            for (item in lastAdapterList){
+                if(item.title.lowercase().contains(text.lowercase(Locale.getDefault()))){
+                    filteredList.add(item)
+                }
+            }
+
+            if (filteredList.isEmpty()){
+                println("Filtered list boş")
+            }else{
+                adapter.filterList(filteredList)
+            }
+
+        }
+
+
+        binding.HomePageSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener  {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                println("New Text is $newText")
+                filter(newText!!)
+                return false
+            }
+
+        })
+
+
+
 
         return view
     }

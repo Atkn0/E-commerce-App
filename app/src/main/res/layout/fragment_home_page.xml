@@ -39,18 +39,12 @@
                 android:layout_height="wrap_content">
 
 
-                <EditText
+                <androidx.appcompat.widget.SearchView
                     android:layout_width="match_parent"
-                    android:background="@null"
-                    android:drawablePadding="10dp"
-                    android:paddingHorizontal="10dp"
-                    android:hint="What are you looking for?"
-                    android:drawableStart="@drawable/search_icon"
-                    android:maxLines="1"
-                    android:layout_height="40dp"
-                    tools:ignore="HardcodedText">
+                    android:layout_height="match_parent"
+                    android:id="@+id/HomePageSearchView">
 
-                </EditText>
+                </androidx.appcompat.widget.SearchView>
 
             </com.google.android.material.card.MaterialCardView>
 
