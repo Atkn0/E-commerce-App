@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
 
 
-    var onItemClick : ((ProductModel)->Unit)? = null
+    var onItemClick: ((ProductModel) -> Unit)? = null
 
 
     class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -22,7 +22,7 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
     }
 
 
-    fun filterList(filterList:ArrayList<ProductModel>){
+    fun filterList(filterList: ArrayList<ProductModel>) {
 
         list = filterList
         notifyDataSetChanged()
@@ -30,7 +30,7 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        val binding = TestLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = TestLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return myViewHolder(binding)
     }
 
@@ -46,10 +46,10 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
 
         holder.binding.addToFavoriteIcon.setOnClickListener {
             val clickedModel = list[position]
-            if (clickedModel.isSelected){
+            if (clickedModel.isSelected) {
                 holder.binding.ProductNameTextView.text = "arda"
 
-            }else{
+            } else {
                 println("false döndü")
             }
 
@@ -64,15 +64,11 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
         return list.size
     }
 
-    fun updateAdapter(newList:ArrayList<ProductModel>){
+    fun updateAdapter(newList: ArrayList<ProductModel>) {
         list.clear()
         list = newList
         notifyDataSetChanged()
 
     }
-
-    fun selectedItemChangeColor(selectedModel:ProductModel){
-
-
 
 }
