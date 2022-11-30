@@ -8,5 +8,5 @@ data class ProductModel (
     val price:Float,
     val description:String,
     val image:String,
-
+    var isSelected:Boolean = false,
         )

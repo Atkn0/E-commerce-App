@@ -24,10 +24,12 @@ class HomePageFragment : Fragment() {
 
     lateinit var binding:FragmentHomePageBinding
     private lateinit var viewModel:HomePageViewModel
+    lateinit var adapter:HomePageRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
+        viewModel.signInWithEmailPassword("arda@gmail.com","123456", requireContext())
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -38,10 +40,9 @@ class HomePageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomePageBinding.inflate(inflater)
         val view = binding.root
-        val adapter = HomePageRecyclerViewAdapter(arrayListOf())
+        adapter = HomePageRecyclerViewAdapter(arrayListOf())
         var lastAdapterList = ArrayList<ProductModel>()
 
-        viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
 
         GlobalScope.launch (Dispatchers.IO){
             println("AWAİT ÖNCESİNDE")
@@ -86,7 +87,6 @@ class HomePageFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                println("New Text is $newText")
                 filter(newText!!)
                 return false
             }
@@ -98,4 +98,24 @@ class HomePageFragment : Fragment() {
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        adapter.onItemClick = {
+            val myModel = viewModel.addToCartFunc(it)
+
+            viewModel.basketObserver()
+        }
+
+        viewModel.basketCounter.observe(viewLifecycleOwner, Observer {
+            binding.ToolBarLayout.basketCounterTextView.text = it.toString()
+        })
+
+
+
+
+    }
+
 }
