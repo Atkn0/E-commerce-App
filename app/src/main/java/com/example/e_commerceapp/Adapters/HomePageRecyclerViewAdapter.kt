@@ -1,23 +1,30 @@
 package com.example.e_commerceapp.Adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.Models.ProductModel
+import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.FragmentHomePageBinding
 import com.example.e_commerceapp.databinding.TestLayoutBinding
 import com.squareup.picasso.Picasso
+import kotlin.coroutines.coroutineContext
 
-class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
+class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context: Context):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
 
 
     var onItemClick: ((ProductModel) -> Unit)? = null
 
 
     class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
 
     }
 
@@ -34,8 +41,11 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
         return myViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
+
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
+
+        val product = list[position]
+
         holder.binding.ProductLayout
         holder.binding.PriceTextView.text = list[position].price.toString()
         holder.binding.ProductNameTextView.text = list[position].title
@@ -44,18 +54,26 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>):RecyclerVie
             .load(list[position].image)
             .into(holder.binding.ProductImageView)
 
-        holder.binding.addToFavoriteIcon.setOnClickListener {
-            val clickedModel = list[position]
-            if (clickedModel.isSelected) {
-                holder.binding.ProductNameTextView.text = "arda"
-
-            } else {
-                println("false döndü")
-            }
 
 
-            onItemClick?.invoke(clickedModel)
+
+        if (product.isSelected) {
+            holder.binding.addToFavoriteIcon.setBackgroundColor(Color.RED)
+
+        } else {
+
+            holder.binding.addToFavoriteIcon.setBackgroundColor(Color.BLACK)
+
         }
+
+        holder.binding.addToFavoriteIcon.setOnClickListener {
+            product.isSelected = !product.isSelected
+            notifyDataSetChanged()
+            onItemClick?.invoke(product)
+        }
+
+
+
 
 
     }

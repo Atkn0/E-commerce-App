@@ -3,16 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/homePageFragment" android:title="Home Page"
-        android:icon="@drawable/home_selector"
+        android:icon="@drawable/home_icon"
         tools:ignore="HardcodedText">
 
     </item>
-    <item android:id="@+id/Sell" android:title="Sell"
-        tools:ignore="HardcodedText" />
 
     <item android:id="@+id/favouritePageFragment" android:title="Favorites"
         android:icon="@drawable/favorite_icon"
         tools:ignore="HardcodedText">
+    </item>
+
+    <item android:id="@+id/ProfilePage" android:title="Profile" android:icon="@drawable/profile_icon">
 
     </item>
 

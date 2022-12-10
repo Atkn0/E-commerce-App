@@ -5,15 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
 import com.example.e_commerceapp.Models.ProductModel
-import com.example.e_commerceapp.R
 import com.example.e_commerceapp.ViewModels.HomePageViewModel
 import com.example.e_commerceapp.databinding.FragmentHomePageBinding
 import kotlinx.coroutines.*
@@ -40,7 +38,8 @@ class HomePageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomePageBinding.inflate(inflater)
         val view = binding.root
-        adapter = HomePageRecyclerViewAdapter(arrayListOf())
+
+        adapter = HomePageRecyclerViewAdapter(arrayListOf(), requireContext())
         var lastAdapterList = ArrayList<ProductModel>()
 
 
@@ -103,8 +102,25 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        fun test(model:ProductModel){
+
+            if (model.isSelected){
+
+
+
+            }
+
+
+        }
+
+
+
         adapter.onItemClick = {
-            val myModel = viewModel.addToCartFunc(it)
+
+            lifecycleScope.launch {
+                val myModel = viewModel.addToCartFunc(it,context)
+
+            }
 
             viewModel.basketObserver()
         }

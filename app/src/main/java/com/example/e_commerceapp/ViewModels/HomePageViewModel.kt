@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.UUID
+import kotlinx.coroutines.tasks.await
 
 class HomePageViewModel:ViewModel() {
 
@@ -29,7 +29,7 @@ class HomePageViewModel:ViewModel() {
         productModelList.postValue(productList)
     }
 
-    fun addToCartFunc(selectedModel:ProductModel):ProductModel{
+    suspend fun addToCartFunc(selectedModel:ProductModel, binding: Context?):ProductModel{
         val newHashMap = HashMap<String,Any>()
         newHashMap.put("id",selectedModel.id)
         newHashMap.put("title",selectedModel.title)
@@ -39,11 +39,15 @@ class HomePageViewModel:ViewModel() {
         newHashMap.put("isSelected",selectedModel.isSelected)
 
 
+
+
         selectedModel.isSelected = !selectedModel.isSelected
         db.collection("userUID")
             .document("basket")
             .collection("productsInBasket")
-            .add(newHashMap)
+            .add(newHashMap).await()
+
+
 
 
         return selectedModel
