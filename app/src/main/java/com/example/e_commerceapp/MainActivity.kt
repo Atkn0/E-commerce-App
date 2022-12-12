@@ -19,18 +19,21 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.BottomNavView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener{_,destination,_ ->
-            if (destination.id == R.id.favouritePageFragment){
-                val aciton = HomePageFragmentDirections.actionHomePageFragmentToFavouritePageFragment()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.favouritePageFragment) {
+                val aciton =
+                    HomePageFragmentDirections.actionHomePageFragmentToFavouritePageFragment()
                 navController.navigate(aciton)
             }
 
+            if (destination.id == R.id.profilePageFragment){
+                val action = HomePageFragmentDirections.actionHomePageFragmentToProfilePageFragment()
+                navController.navigate(action)
+
+            }
+
+
         }
-
-
-
-
-
 
         setContentView(view)
 

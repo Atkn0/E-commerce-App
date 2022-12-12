@@ -18,22 +18,13 @@ import kotlin.coroutines.coroutineContext
 
 class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context: Context):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
 
-
     var onItemClick: ((ProductModel) -> Unit)? = null
 
-
-    class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
-
-    }
-
+    class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     fun filterList(filterList: ArrayList<ProductModel>) {
-
         list = filterList
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
@@ -41,29 +32,22 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
         return myViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
 
         val product = list[position]
 
         holder.binding.ProductLayout
-        holder.binding.PriceTextView.text = list[position].price.toString()
-        holder.binding.ProductNameTextView.text = list[position].title
+        holder.binding.PriceTextView.text = product.price.toString()
+        holder.binding.ProductNameTextView.text = product.title
         Picasso
             .get()
-            .load(list[position].image)
+            .load(product.image)
             .into(holder.binding.ProductImageView)
-
-
-
 
         if (product.isSelected) {
             holder.binding.addToFavoriteIcon.setBackgroundColor(Color.RED)
-
         } else {
-
             holder.binding.addToFavoriteIcon.setBackgroundColor(Color.BLACK)
-
         }
 
         holder.binding.addToFavoriteIcon.setOnClickListener {
@@ -71,10 +55,6 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
             notifyDataSetChanged()
             onItemClick?.invoke(product)
         }
-
-
-
-
 
     }
 
@@ -84,9 +64,8 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
 
     fun updateAdapter(newList: ArrayList<ProductModel>) {
         list.clear()
-        list = newList
+        list.addAll(newList)
         notifyDataSetChanged()
-
     }
 
 }

@@ -27,7 +27,7 @@ class HomePageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
-        viewModel.signInWithEmailPassword("arda@gmail.com","123456", requireContext())
+        viewModel.signInWithEmailPassword("arda@gmail.com","123456",requireContext())
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -43,10 +43,8 @@ class HomePageFragment : Fragment() {
         var lastAdapterList = ArrayList<ProductModel>()
 
 
-        GlobalScope.launch (Dispatchers.IO){
-            println("AWAİT ÖNCESİNDE")
-            async { viewModel.getAllProducts() }.await()
-            println("AWAİT BİTTİKTEN SONRA")
+        GlobalScope.launch (Dispatchers.Main){
+            viewModel.getAllProducts()
         }
 
         binding.ReycylerView.adapter = adapter
@@ -92,42 +90,17 @@ class HomePageFragment : Fragment() {
 
         })
 
-
-
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        fun test(model:ProductModel){
-
-            if (model.isSelected){
-
-
-
-            }
-
-
-        }
-
-
-
         adapter.onItemClick = {
-
             lifecycleScope.launch {
-                val myModel = viewModel.addToCartFunc(it,context)
-
+                viewModel.controlFavoriteDatabase(it)
             }
-
-            viewModel.basketObserver()
         }
-
-        viewModel.basketCounter.observe(viewLifecycleOwner, Observer {
-            binding.ToolBarLayout.basketCounterTextView.text = it.toString()
-        })
 
 
 

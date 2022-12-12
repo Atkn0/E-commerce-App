@@ -13,7 +13,8 @@
         tools:ignore="HardcodedText">
     </item>
 
-    <item android:id="@+id/ProfilePage" android:title="Profile" android:icon="@drawable/profile_icon">
+    <item android:id="@+id/profilePageFragment" android:title="Profile" android:icon="@drawable/profile_icon"
+        tools:ignore="HardcodedText">
 
     </item>
 
