@@ -7,7 +7,7 @@ import retrofit2.create
 
 class PhotoApiService {
 
-    val BASE_URL:String = " https://api.escuelajs.co/api/v1/"
+    val BASE_URL:String = "https://fakestoreapi.com/"
 
     val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

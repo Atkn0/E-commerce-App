@@ -45,9 +45,9 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
             .into(holder.binding.ProductImageView)
 
         if (product.isSelected) {
-            holder.binding.addToFavoriteIcon.setBackgroundColor(Color.RED)
+            holder.binding.addToFavoriteIcon.setColorFilter(Color.BLUE)
         } else {
-            holder.binding.addToFavoriteIcon.setBackgroundColor(Color.BLACK)
+            holder.binding.addToFavoriteIcon.setColorFilter(Color.RED)
         }
 
         holder.binding.addToFavoriteIcon.setOnClickListener {

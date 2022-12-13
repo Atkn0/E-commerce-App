@@ -1,18 +1,27 @@
 package com.example.e_commerceapp.ViewModels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_commerceapp.Models.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 
 class FavoritePageViewModel:ViewModel() {
 
     private val db = Firebase.firestore
+    val allFavoriteLiveData = MutableLiveData<ArrayList<ProductModel>>()
 
-    suspend fun getAllFavoriteProducts():ArrayList<ProductModel>{
+    suspend fun getAllFavoriteProducts(){
 
-        val list  = ArrayList<ProductModel>()
+        val docList = ArrayList<ProductModel>()
+        println("runBlocking öncesi")
+
         db.collection("userUID")
             .document("favorite")
             .collection("productsInFavorite")
@@ -20,23 +29,28 @@ class FavoritePageViewModel:ViewModel() {
             .addOnSuccessListener {
                 val doc = it.documents
                 for (i in doc){
-
-                    //BUG: Review this code (it's about ProductModel)
-                    val newProductModel = ProductModel(
-                        i.get("id") as Int,
-                        i.get("title") as String,
-                        i.get("price") as Float,
-                        i.get("description") as String,
-                        i.get("image") as String,
-                        i.get("isSelected") as Boolean
-                    )
-                    list.add(newProductModel)
+                    val id = i.get("id") as Long
+                    val title = i.get("title") as String
+                    val price = i.get("price") as Double
+                    val description = i.get("description") as String
+                    val image = i.get("image") as String
+                    val isSelected = i.get("isSelected") as Boolean
+                    val product = ProductModel(id.toInt(),title,price.toFloat(),description,image,isSelected)
+                    docList.add(product)
                 }
+                allFavoriteLiveData.value = docList
+            }
+    }
 
-            }.await()
-
-        return list
-
+    fun removeFromFavorite(selectedModel:ProductModel){
+        db.collection("userUID")
+            .document("favorite")
+            .collection("productsInFavorite").document(selectedModel.id.toString()).delete()
+            .addOnCompleteListener { task->
+                if (task.isSuccessful){
+                    println("Document deleted")
+                }
+            }
     }
 
 }
