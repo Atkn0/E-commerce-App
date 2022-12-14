@@ -50,7 +50,7 @@ class FavouritePageFragment : Fragment() {
         binding = FragmentFavouritePageBinding.inflate(inflater)
         val view = binding.root
 
-        favoriteAdapter = FavoriteRecyclerViewAdapter(favoriteList)
+        favoriteAdapter = FavoriteRecyclerViewAdapter(favoriteList,requireContext())
         binding.FavoriteRecyclerView.adapter = favoriteAdapter
         binding.FavoriteRecyclerView.setHasFixedSize(true)
         binding.FavoriteRecyclerView.layoutManager = GridLayoutManager(context,2)
@@ -65,7 +65,18 @@ class FavouritePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         favoriteViewModel.allFavoriteLiveData.observe(viewLifecycleOwner, Observer{ newList ->
+
+            if (newList.isEmpty()){
+                binding.lottieAnimationView.visibility = View.VISIBLE
+                binding.lottieTextView.visibility = View.VISIBLE
+                binding.lottieAnimationView.playAnimation()
+            }else{
+                binding.lottieAnimationView.visibility = View.GONE
+                binding.lottieTextView.visibility = View.GONE
+                binding.lottieAnimationView.pauseAnimation()
+            }
             favoriteAdapter.updateFavoriteList(newList)
         })
 
