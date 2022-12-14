@@ -52,7 +52,6 @@ class HomePageFragment : Fragment() {
         binding.ReycylerView.layoutManager = GridLayoutManager(context,2)
 
         viewModel.productModelList.observe(viewLifecycleOwner, Observer {
-
             adapter.updateAdapter(it)
             lastAdapterList = it
 
@@ -101,10 +100,6 @@ class HomePageFragment : Fragment() {
                 viewModel.controlFavoriteDatabase(it)
             }
         }
-
-
-
-
     }
 
 }

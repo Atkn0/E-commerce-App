@@ -45,9 +45,9 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
             .into(holder.binding.ProductImageView)
 
         if (product.isSelected) {
-            holder.binding.addToFavoriteIcon.setColorFilter(Color.BLUE)
+            holder.binding.addToFavoriteIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.selected_favorite_icon))
         } else {
-            holder.binding.addToFavoriteIcon.setColorFilter(Color.RED)
+            holder.binding.addToFavoriteIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.favorite_icon))
         }
 
         holder.binding.addToFavoriteIcon.setOnClickListener {
@@ -55,7 +55,6 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
             notifyDataSetChanged()
             onItemClick?.invoke(product)
         }
-
     }
 
     override fun getItemCount(): Int {

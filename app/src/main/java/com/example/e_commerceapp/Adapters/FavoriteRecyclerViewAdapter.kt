@@ -1,15 +1,20 @@
 package com.example.e_commerceapp.Adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.Models.ProductModel
+import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.FragmentFavouritePageBinding
 import com.example.e_commerceapp.databinding.TestLayoutBinding
 import com.squareup.picasso.Picasso
 
-class FavoriteRecyclerViewAdapter(val favoriteList:ArrayList<ProductModel>):RecyclerView.Adapter<FavoriteRecyclerViewAdapter.favoriteViewHolder>() {
+
+
+class FavoriteRecyclerViewAdapter(val favoriteList:ArrayList<ProductModel>,val viewContext: Context):RecyclerView.Adapter<FavoriteRecyclerViewAdapter.favoriteViewHolder>() {
 
     var onFavoriteClick: ((ProductModel) -> Unit)? = null
 
@@ -34,11 +39,18 @@ class FavoriteRecyclerViewAdapter(val favoriteList:ArrayList<ProductModel>):Recy
             .load(product.image)
             .into(holder.binding.ProductImageView)
 
+        if (product.isSelected) {
+            holder.binding.addToFavoriteIcon.setImageDrawable(ContextCompat.getDrawable(viewContext, R.drawable.selected_favorite_icon))
+        } else {
+            holder.binding.addToFavoriteIcon.setImageDrawable(ContextCompat.getDrawable(viewContext, R.drawable.favorite_icon))
+        }
+
         holder.binding.addToFavoriteIcon.setOnClickListener {
             product.isSelected = !product.isSelected
             notifyDataSetChanged()
             onFavoriteClick?.invoke(product)
         }
+
 
     }
 
