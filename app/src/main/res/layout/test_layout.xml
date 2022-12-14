@@ -37,7 +37,9 @@
             android:id="@+id/FavoriteButtonCardView">
 
             <ImageView
+                android:id="@+id/addToFavoriteIcon"
                 android:padding="8dp"
+                android:clickable="true"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -5,15 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
 import com.example.e_commerceapp.Models.ProductModel
-import com.example.e_commerceapp.R
 import com.example.e_commerceapp.ViewModels.HomePageViewModel
 import com.example.e_commerceapp.databinding.FragmentHomePageBinding
 import kotlinx.coroutines.*
@@ -24,10 +22,12 @@ class HomePageFragment : Fragment() {
 
     lateinit var binding:FragmentHomePageBinding
     private lateinit var viewModel:HomePageViewModel
+    lateinit var adapter:HomePageRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
+        viewModel.signInWithEmailPassword("arda@gmail.com","123456",requireContext())
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -38,15 +38,13 @@ class HomePageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomePageBinding.inflate(inflater)
         val view = binding.root
-        val adapter = HomePageRecyclerViewAdapter(arrayListOf())
+
+        adapter = HomePageRecyclerViewAdapter(arrayListOf(), requireContext())
         var lastAdapterList = ArrayList<ProductModel>()
 
-        viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
 
-        GlobalScope.launch (Dispatchers.IO){
-            println("AWAİT ÖNCESİNDE")
-            async { viewModel.getAllProducts() }.await()
-            println("AWAİT BİTTİKTEN SONRA")
+        GlobalScope.launch (Dispatchers.Main){
+            viewModel.getAllProducts()
         }
 
         binding.ReycylerView.adapter = adapter
@@ -86,16 +84,27 @@ class HomePageFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                println("New Text is $newText")
                 filter(newText!!)
                 return false
             }
 
         })
 
-
-
-
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter.onItemClick = {
+            lifecycleScope.launch {
+                viewModel.controlFavoriteDatabase(it)
+            }
+        }
+
+
+
+
+    }
+
 }
