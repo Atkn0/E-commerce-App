@@ -1,15 +1,15 @@
 package com.example.e_commerceapp.ViewModels
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerceapp.Adapters.FavoriteRecyclerViewAdapter
 import com.example.e_commerceapp.Models.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 
 class FavoritePageViewModel:ViewModel() {
@@ -42,15 +42,20 @@ class FavoritePageViewModel:ViewModel() {
             }
     }
 
-    fun removeFromFavorite(selectedModel:ProductModel){
+    suspend fun removeFromFavorite(selectedModel:ProductModel):String{
         db.collection("userUID")
             .document("favorite")
             .collection("productsInFavorite").document(selectedModel.id.toString()).delete()
-            .addOnCompleteListener { task->
-                if (task.isSuccessful){
-                    println("Document deleted")
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    viewModelScope.launch {
+                        getAllFavoriteProducts()
+                    }
                 }
             }
+            .await()
+            return "success"
     }
+
 
 }

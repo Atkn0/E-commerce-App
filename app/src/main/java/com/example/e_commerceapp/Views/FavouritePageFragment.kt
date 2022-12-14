@@ -59,7 +59,9 @@ class FavouritePageFragment : Fragment() {
         return view
     }
 
+
     @SuppressLint("NotifyDataSetChanged")
+    @DelicateCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -67,16 +69,20 @@ class FavouritePageFragment : Fragment() {
             favoriteAdapter.updateFavoriteList(newList)
         })
 
-        favoriteAdapter.onFavoriteClick = { model ->
-            lifecycleScope.launch {
-                favoriteViewModel.removeFromFavorite(model)
-                Toast.makeText(requireContext(), "Successfully Deleted From Favorite", Toast.LENGTH_SHORT).show()
-            }
-            //Check this line
-            favoriteAdapter
-                .notifyDataSetChanged()
 
+        favoriteAdapter.onFavoriteClick = { model ->
+            runBlocking {
+                val text = async { favoriteViewModel.removeFromFavorite(model) }.await()
+                println("scope içinde")
+                println(text)
+            }
+            println("scope dışında")
         }
+
+
+
+
+
     }
 
 
