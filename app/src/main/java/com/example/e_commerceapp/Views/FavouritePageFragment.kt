@@ -32,13 +32,10 @@ class FavouritePageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         favoriteViewModel = ViewModelProvider(this)[FavoritePageViewModel::class.java]
-        println("onCreate içerisinde")
 
         GlobalScope.launch (Dispatchers.IO){
             favoriteViewModel.getAllFavoriteProducts()
-            println(favoriteList)
         }
-
 
     }
 
@@ -65,7 +62,6 @@ class FavouritePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         favoriteViewModel.allFavoriteLiveData.observe(viewLifecycleOwner, Observer{ newList ->
 
             if (newList.isEmpty()){
@@ -80,21 +76,10 @@ class FavouritePageFragment : Fragment() {
             favoriteAdapter.updateFavoriteList(newList)
         })
 
-
         favoriteAdapter.onFavoriteClick = { model ->
             runBlocking {
                 val text = async { favoriteViewModel.removeFromFavorite(model) }.await()
-                println("scope içinde")
-                println(text)
             }
-            println("scope dışında")
         }
-
-
-
-
-
     }
-
-
 }
