@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_profilePageFragment"
             app:destination="@id/profilePageFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritePageFragment"
@@ -27,4 +30,13 @@
         android:name="com.example.e_commerceapp.Views.ProfilePageFragment"
         android:label="fragment_profile_page"
         tools:layout="@layout/fragment_profile_page" />
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.e_commerceapp.Views.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="productDetail"
+            app:argType="com.example.e_commerceapp.Models.ProductModel" />
+    </fragment>
 </navigation>

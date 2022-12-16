@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
 import com.example.e_commerceapp.Models.ProductModel
@@ -59,7 +60,6 @@ class HomePageFragment : Fragment() {
 
         //filter function
         fun filter(text:String){
-
             val filteredList:ArrayList<ProductModel> = ArrayList<ProductModel>()
 
             for (item in lastAdapterList){
@@ -69,7 +69,6 @@ class HomePageFragment : Fragment() {
             }
 
             if (filteredList.isEmpty()){
-                println("Filtered list boş")
             }else{
                 adapter.filterList(filteredList)
             }
@@ -88,18 +87,23 @@ class HomePageFragment : Fragment() {
             }
 
         })
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter.onItemClick = {
+        adapter.onFavoriteIconClick = {
             lifecycleScope.launch {
                 viewModel.controlFavoriteDatabase(it)
             }
         }
+
+        adapter.onProductClick = {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToProductDetailFragment(it)
+            findNavController().navigate(action)
+        }
+
     }
 
 }

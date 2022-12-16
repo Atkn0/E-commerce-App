@@ -20,7 +20,6 @@ class FavoritePageViewModel:ViewModel() {
     suspend fun getAllFavoriteProducts(){
 
         val docList = ArrayList<ProductModel>()
-        println("runBlocking öncesi")
 
         db.collection("userUID")
             .document("favorite")

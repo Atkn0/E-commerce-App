@@ -47,23 +47,19 @@ class HomePageViewModel:ViewModel() {
     suspend fun getFavoriteFirestore():ArrayList<ProductModel>{
 
         val firestoreFavoriteList = ArrayList<ProductModel>()
-        println("db öncesi")
         db.collection("userUID")
             .document("favorite")
             .collection("productsInFavorite").get().addOnSuccessListener {
                 for (document in it){
-                    val product = ProductModel(document.get("id").toString().toInt()
-                        ,document.get("title") as String
-                        ,document.get("price").toString().toFloat()
-                        ,document.get("description") as String
-                        ,document.get("image") as String
-                        ,document.get("isSelected") as Boolean)
+                    val product = ProductModel(document.get("id").toString().toInt(),
+                        document.get("title") as String,
+                        document.get("price").toString().toFloat(),
+                        document.get("description") as String,
+                        document.get("image") as String,
+                        document.get("isSelected") as Boolean)
                     firestoreFavoriteList.add(product)
                 }
-            println("db içinde")
             }.await()
-        println("db sonrası")
-        println(firestoreFavoriteList)
         return firestoreFavoriteList
     }
 
@@ -95,12 +91,10 @@ class HomePageViewModel:ViewModel() {
         newHashMap.put("image",selectedModel.image)
         newHashMap.put("isSelected",selectedModel.isSelected)
 
-
         db.collection("userUID")
             .document("favorite")
             .collection("productsInFavorite").document(selectedModel.id.toString()).set(newHashMap,
                 SetOptions.merge())
-
     }
 
     fun removeFromFavorite(selectedModel:ProductModel){
@@ -111,7 +105,6 @@ class HomePageViewModel:ViewModel() {
 
 
     suspend fun controlFavoriteDatabase(selectedModel: ProductModel) {
-        println("controlFavoriteDatabase")
         //check if selectedModel is in favorite database
         val favoriteList = db.collection("userUID")
             .document("favorite")

@@ -18,7 +18,8 @@ import kotlin.coroutines.coroutineContext
 
 class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context: Context):RecyclerView.Adapter<HomePageRecyclerViewAdapter.myViewHolder>() {
 
-    var onItemClick: ((ProductModel) -> Unit)? = null
+    var onFavoriteIconClick: ((ProductModel) -> Unit)? = null
+    var onProductClick: ((ProductModel) -> Unit)? = null
 
     class myViewHolder(val binding: TestLayoutBinding) : RecyclerView.ViewHolder(binding.root) {}
 
@@ -53,8 +54,13 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
         holder.binding.addToFavoriteIcon.setOnClickListener {
             product.isSelected = !product.isSelected
             notifyDataSetChanged()
-            onItemClick?.invoke(product)
+            onFavoriteIconClick?.invoke(product)
         }
+
+        holder.binding.ProductLayout.setOnClickListener {
+            onProductClick?.invoke(product)
+        }
+
     }
 
     override fun getItemCount(): Int {
