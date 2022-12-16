@@ -51,7 +51,6 @@ class FavoriteRecyclerViewAdapter(val favoriteList:ArrayList<ProductModel>,val v
             onFavoriteClick?.invoke(product)
         }
 
-
     }
 
 

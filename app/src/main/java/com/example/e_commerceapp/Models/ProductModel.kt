@@ -13,4 +13,5 @@ data class ProductModel(
     val description:String,
     val image:String,
     var isSelected:Boolean = false,
+    var isInBasket:Boolean = false,
 ) : Parcelable

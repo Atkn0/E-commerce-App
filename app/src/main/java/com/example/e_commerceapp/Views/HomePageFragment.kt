@@ -69,7 +69,6 @@ class HomePageFragment : Fragment() {
             }
 
             if (filteredList.isEmpty()){
-                println("Filtered list boş")
             }else{
                 adapter.filterList(filteredList)
             }
