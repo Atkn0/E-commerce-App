@@ -24,7 +24,7 @@ class HomePageViewModel:ViewModel() {
     private lateinit var auth:FirebaseAuth
     var currentUserId: MutableLiveData<String>? = null
     private val db = Firebase.firestore
-    val basketCounter:MutableLiveData<Int> = MutableLiveData()
+    val homeBasketCounter = MutableLiveData<Int>()
 
 
     suspend fun getAllProducts(){
