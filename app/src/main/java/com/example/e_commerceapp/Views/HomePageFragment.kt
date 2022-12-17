@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_commerceapp.Adapters.HomePageRecyclerViewAdapter
 import com.example.e_commerceapp.Models.ProductModel
 import com.example.e_commerceapp.ViewModels.HomePageViewModel
+import com.example.e_commerceapp.ViewModels.MainActivityViewModel
+import com.example.e_commerceapp.ViewModels.ProductDetailViewModel
 import com.example.e_commerceapp.databinding.FragmentHomePageBinding
 import kotlinx.coroutines.*
 import java.util.*
@@ -23,11 +26,15 @@ class HomePageFragment : Fragment() {
 
     lateinit var binding:FragmentHomePageBinding
     private lateinit var viewModel:HomePageViewModel
+    private lateinit var productDetailViewModel: ProductDetailViewModel
     lateinit var adapter:HomePageRecyclerViewAdapter
+    lateinit var mainViewModel:MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
+        mainViewModel = ViewModelProvider(requireActivity())[MainActivityViewModel::class.java]
+        productDetailViewModel = ViewModelProvider(this)[ProductDetailViewModel::class.java]
         viewModel.signInWithEmailPassword("arda@gmail.com","123456",requireContext())
     }
 
@@ -55,8 +62,9 @@ class HomePageFragment : Fragment() {
         viewModel.productModelList.observe(viewLifecycleOwner, Observer {
             adapter.updateAdapter(it)
             lastAdapterList = it
-
         })
+
+
 
         //filter function
         fun filter(text:String){
@@ -75,7 +83,6 @@ class HomePageFragment : Fragment() {
 
         }
 
-
         binding.HomePageSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener  {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -92,6 +99,10 @@ class HomePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mainViewModel.toolbarBasketCounter.observe(viewLifecycleOwner, Observer {
+            binding.ToolBarLayout.basketCounterTextView.text = it.toString()
+        })
 
         adapter.onFavoriteIconClick = {
             lifecycleScope.launch {
