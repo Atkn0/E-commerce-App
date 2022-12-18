@@ -61,7 +61,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FF3A59"
-                    android:text="21"
                     tools:ignore="HardcodedText">
 
                 </TextView>
