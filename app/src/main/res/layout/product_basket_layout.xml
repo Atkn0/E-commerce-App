@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/ProductBasketLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -60,7 +61,6 @@
                         android:id="@+id/BasketProductNameTextView"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:lines="2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Xiaomi Mi 10T Pro 5G"
@@ -74,24 +74,24 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="null"
+                        android:background="@null"
                         android:src="@drawable/basket_delete"
                         android:id="@+id/BasketProductDeleteButton">
 
                     </ImageButton>
 
-                    <RelativeLayout
-                        android:id="@+id/BasketProductPriceLinearLayout"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
 
                         <com.google.android.material.card.MaterialCardView
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:cardCornerRadius="15dp"
+                            app:cardElevation="0dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:strokeWidth=".4dp"
                             app:strokeColor="@android:color/darker_gray"
@@ -116,7 +116,7 @@
                                 <com.google.android.material.card.MaterialCardView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_marginVertical="4dp"
+                                    android:layout_marginVertical="5dp"
                                     app:cardBackgroundColor="#ff3856"
                                     app:cardCornerRadius="40dp"
                                     android:layout_weight="1"
@@ -147,16 +147,18 @@
 
 
                             </LinearLayout>
+
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
-                            android:layout_alignParentEnd="true"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:id="@+id/ProductPriceBaskettextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:foregroundGravity="right"
                             android:text="123$"
+                            android:textSize="17sp"
                             android:textColor="@color/appBarTitleColor"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -165,8 +167,7 @@
 
                         </TextView>
 
-
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

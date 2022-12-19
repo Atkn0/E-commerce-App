@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.e_commerceapp.Models.ProductModel
 import com.example.e_commerceapp.R
@@ -92,7 +93,13 @@ class ProductDetailFragment : Fragment() {
                     binding.ProductDetailAddToCartButton.text = "Remove From Basket"
                     binding.ProductDetailAddToCartButton.setBackgroundColor(Color.GREEN)
                 }
+            }
         }
     }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
+
 }

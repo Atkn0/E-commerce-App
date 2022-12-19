@@ -18,10 +18,12 @@
             app:destination="@id/profilePageFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/product_detail_anim" />
         <action
             android:id="@+id/action_homePageFragment_to_basketFragment"
-            app:destination="@id/basketFragment" />
+            app:destination="@id/basketFragment"
+            app:enterAnim="@anim/basket_layout_anim" />
     </fragment>
     <fragment
         android:id="@+id/favouritePageFragment"
