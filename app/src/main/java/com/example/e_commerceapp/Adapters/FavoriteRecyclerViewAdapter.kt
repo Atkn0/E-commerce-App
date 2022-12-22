@@ -53,7 +53,6 @@ class FavoriteRecyclerViewAdapter(val favoriteList:ArrayList<ProductModel>,val v
 
     }
 
-
     override fun getItemCount(): Int {
         return favoriteList.size
     }

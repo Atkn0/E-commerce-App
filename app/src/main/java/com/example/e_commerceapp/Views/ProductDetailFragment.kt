@@ -57,10 +57,9 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-        println("onCreate içinde ve booltest = " + Product.isInBasket)
 
         if (Product.isInBasket){
-            binding.ProductDetailAddToCartButton.text = "Already In Basket"
+            binding.ProductDetailAddToCartButton.text = "Remove From Basket"
             binding.ProductDetailAddToCartButton.setBackgroundColor(Color.GREEN)
         }else{
             binding.ProductDetailAddToCartButton.text = "Add To Basket"

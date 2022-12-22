@@ -11,5 +11,6 @@
     <color name="unSelected_item_color">#FF018786</color>
 
     <color name="appBarTitleColor">#FF3A59</color>
+    <color name="lottieAnimColor">#9C9C9C</color>
 
 </resources>
