@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.e_commerceapp.Models.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 
 class BasketFragmentViewModel : ViewModel() {
 
@@ -36,4 +37,15 @@ class BasketFragmentViewModel : ViewModel() {
 
     }
 
+    fun removeFromBasket(product: ProductModel){
+        product.isInBasket = false
+        db.collection("userUID")
+            .document("basket")
+            .collection("productsInBasket")
+            .document(product.id.toString())
+            .delete().addOnSuccessListener {
+                basket_list.remove(product)
+                basketListLiveData.postValue(basket_list)
+            }
+     }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceapp.Adapters.BasketRecyclerViewAdapter
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.ViewModels.BasketFragmentViewModel
+import com.example.e_commerceapp.ViewModels.MainActivityViewModel
 import com.example.e_commerceapp.databinding.FragmentBasketBinding
 
 
@@ -20,12 +21,14 @@ class BasketFragment : Fragment() {
 
     lateinit var binding: FragmentBasketBinding
     private lateinit var basketViewModel: BasketFragmentViewModel
+    private lateinit var mainActivityViewModel: MainActivityViewModel
     lateinit var adapter: BasketRecyclerViewAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         basketViewModel = ViewModelProvider(this)[BasketFragmentViewModel::class.java]
+        mainActivityViewModel = ViewModelProvider(requireActivity())[MainActivityViewModel::class.java]
         basketViewModel.getBasketList()
     }
 
@@ -67,6 +70,13 @@ class BasketFragment : Fragment() {
             }
             adapter.updateBasketList(it)
         })
+
+        adapter.onProductDeleteClick = {
+            basketViewModel.removeFromBasket(it)
+            mainActivityViewModel.getFirstBasketCount()
+        }
+
+
     }
 
 

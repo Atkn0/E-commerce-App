@@ -51,6 +51,8 @@ class HomePageRecyclerViewAdapter(var list: ArrayList<ProductModel>,val context:
             holder.binding.addToFavoriteIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.favorite_icon))
         }
 
+
+
         holder.binding.addToFavoriteIcon.setOnClickListener {
             product.isSelected = !product.isSelected
             notifyDataSetChanged()

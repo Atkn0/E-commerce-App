@@ -58,9 +58,11 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_marginStart="15dp"
-        android:text="9.700 TL"
+        android:text="9.700"
         android:textColor="@color/black"
         tools:ignore="HardcodedText" />
+
+
 
     <TextView
         android:id="@+id/ProductNameTextView"
