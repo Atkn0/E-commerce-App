@@ -10,6 +10,10 @@ import com.squareup.picasso.Picasso
 
 class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):RecyclerView.Adapter<BasketRecyclerViewAdapter.BasketViewHolder>() {
 
+
+    var onProductDeleteClick: ((ProductModel) -> Unit)? = null
+
+
     class BasketViewHolder(val binding: ProductBasketLayoutBinding):RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -33,6 +37,11 @@ class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):
             .get()
             .load(product.image)
             .into(holder.binding.BasketProductImageView)
+
+        holder.binding.BasketProductDeleteButton.setOnClickListener {
+           // product.isInBasket = !product.isInBasket
+            onProductDeleteClick?.invoke(product)
+        }
 
     }
 
