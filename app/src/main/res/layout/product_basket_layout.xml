@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/ProductBasketLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="10dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="0.7dp"
+        app:strokeColor="@android:color/darker_gray"
+        app:cardCornerRadius="10dp"
+        android:id="@+id/BasketProductCardView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/BasketProductImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/urun"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintStart_toEndOf="@id/BasketProductImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/BasketProductNameTextView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xiaomi Mi 10T Pro 5G"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <ImageButton
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/basket_delete"
+                        android:id="@+id/BasketProductDeleteButton">
+
+                    </ImageButton>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <com.google.android.material.card.MaterialCardView
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:strokeWidth=".4dp"
+                            app:strokeColor="@android:color/darker_gray"
+                            app:cardBackgroundColor="@color/white"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageButton
+                                    android:layout_weight=".1"
+                                    android:id="@+id/minusButton"
+                                    android:backgroundTint="@color/white"
+                                    android:src="@drawable/remove_icon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                </ImageButton>
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginVertical="5dp"
+                                    app:cardBackgroundColor="#ff3856"
+                                    app:cardCornerRadius="40dp"
+                                    android:layout_weight="1"
+                                    android:id="@+id/countCardView">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="3"
+                                        android:textColor="@color/white"
+                                        android:layout_gravity="center"
+                                        android:id="@+id/ProductCountTextView"
+                                        tools:ignore="HardcodedText">
+
+                                    </TextView>
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <ImageButton
+                                    android:layout_weight="0.1"
+                                    android:backgroundTint="@color/white"
+                                    android:id="@+id/plusButton"
+                                    android:src="@drawable/plus_svgrepo_com"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                </ImageButton>
+
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:id="@+id/ProductPriceBaskettextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:foregroundGravity="right"
+                            android:text="123$"
+                            android:textSize="17sp"
+                            android:textColor="@color/appBarTitleColor"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="HardcodedText">
+
+                        </TextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

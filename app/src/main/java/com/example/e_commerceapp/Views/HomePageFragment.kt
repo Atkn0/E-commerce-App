@@ -30,6 +30,7 @@ class HomePageFragment : Fragment() {
     lateinit var adapter:HomePageRecyclerViewAdapter
     lateinit var mainViewModel:MainActivityViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[HomePageViewModel::class.java]
@@ -108,6 +109,10 @@ class HomePageFragment : Fragment() {
             lifecycleScope.launch {
                 viewModel.controlFavoriteDatabase(it)
             }
+        }
+
+        binding.ToolBarLayout.BasketIcon.setOnClickListener {
+            findNavController().navigate(HomePageFragmentDirections.actionHomePageFragmentToBasketFragment())
         }
 
         adapter.onProductClick = {

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.e_commerceapp.Models.ProductModel
 import com.example.e_commerceapp.R
@@ -56,10 +57,9 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-        println("onCreate içinde ve booltest = " + Product.isInBasket)
 
         if (Product.isInBasket){
-            binding.ProductDetailAddToCartButton.text = "Already In Basket"
+            binding.ProductDetailAddToCartButton.text = "Remove From Basket"
             binding.ProductDetailAddToCartButton.setBackgroundColor(Color.GREEN)
         }else{
             binding.ProductDetailAddToCartButton.text = "Add To Basket"
@@ -92,7 +92,13 @@ class ProductDetailFragment : Fragment() {
                     binding.ProductDetailAddToCartButton.text = "Remove From Basket"
                     binding.ProductDetailAddToCartButton.setBackgroundColor(Color.GREEN)
                 }
+            }
         }
     }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
+
 }

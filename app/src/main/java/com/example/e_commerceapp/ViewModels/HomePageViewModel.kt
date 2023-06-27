@@ -27,6 +27,7 @@ class HomePageViewModel:ViewModel() {
     val homeBasketCounter = MutableLiveData<Int>()
 
 
+
     suspend fun getAllProducts(){
         val productList = apiService.getApiFromService()
 
@@ -42,6 +43,7 @@ class HomePageViewModel:ViewModel() {
             productModelList.postValue(productList)
         }
     }
+
 
 
     suspend fun getFavoriteFirestore():ArrayList<ProductModel>{
@@ -118,6 +120,5 @@ class HomePageViewModel:ViewModel() {
         }
 
     }
-
 
 }
