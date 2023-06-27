@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(aciton)
             }
 
-            if (destination.id == R.id.profilePageFragment){
-                val action = HomePageFragmentDirections.actionHomePageFragmentToProfilePageFragment()
-                navController.navigate(action)
-            }
         }
 
         setContentView(view)
