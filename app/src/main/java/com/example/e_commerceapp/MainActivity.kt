@@ -3,6 +3,8 @@ package com.example.e_commerceapp
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         mainActivityViewModel.getFirstBasketCount()
 
 
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         binding.BottomNavView.setupWithNavController(navController)
@@ -39,4 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(view)
     }
+
+
+
 }

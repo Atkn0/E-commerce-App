@@ -33,9 +33,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/BasketRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="25dp"
-        android:paddingBottom="85dp"
+        android:layout_height="0dp"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/emptyBasketAnimation"
         android:layout_width="match_parent"
-        android:layout_marginTop="100dp"
+        android:foregroundGravity="center"
         android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
