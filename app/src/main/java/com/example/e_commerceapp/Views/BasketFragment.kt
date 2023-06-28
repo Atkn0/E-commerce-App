@@ -52,6 +52,7 @@ class BasketFragment : Fragment() {
         binding.BasketRecyclerView.layoutManager = LinearLayoutManager(context)
 
 
+
         return view
     }
 
@@ -101,12 +102,8 @@ class BasketFragment : Fragment() {
             builder.setNegativeButton("No"){dialog, which ->
                 dialog.dismiss()
             }
-
             builder.show()
-
-
         }
-
 
 
     }

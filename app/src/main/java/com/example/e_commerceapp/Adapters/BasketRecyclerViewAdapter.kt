@@ -43,6 +43,25 @@ class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):
             onProductDeleteClick?.invoke(product)
         }
 
+        holder.binding.plusButton.setOnClickListener {
+            var count = holder.binding.ProductCountTextView.text.toString().toInt()
+            count += 1
+            holder.binding.ProductCountTextView.text = count.toString()
+            val newProductPrice = product.price * count
+            holder.binding.ProductPriceBaskettextView.text = newProductPrice.toString()
+        }
+
+        holder.binding.minusButton.setOnClickListener {
+            var count = holder.binding.ProductCountTextView.text.toString().toInt()
+            if (count > 1){
+                count -= 1
+                holder.binding.ProductCountTextView.text = count.toString()
+                val newProductPrice = product.price * count
+                holder.binding.ProductPriceBaskettextView.text = newProductPrice.toString()
+            }
+        }
+
+
     }
 
     override fun getItemCount(): Int {
