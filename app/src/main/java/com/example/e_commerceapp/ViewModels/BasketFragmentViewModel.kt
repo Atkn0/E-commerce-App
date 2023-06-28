@@ -11,7 +11,9 @@ class BasketFragmentViewModel : ViewModel() {
 
     private val db = Firebase.firestore
     val basketListLiveData = MutableLiveData<ArrayList<ProductModel>>()
+    val totalPriceLiveData = MutableLiveData<Float>()
     private val basket_list = ArrayList<ProductModel>()
+
 
     fun getBasketList(){
 
@@ -32,6 +34,7 @@ class BasketFragmentViewModel : ViewModel() {
                     val product = ProductModel(id.toInt(),title,price.toFloat(),description,image,isSelected,isInBasket)
                     basket_list.add(product)
                 }
+                calculateTotalPrice()
                 basketListLiveData.postValue(basket_list)
             }
 
@@ -45,7 +48,36 @@ class BasketFragmentViewModel : ViewModel() {
             .document(product.id.toString())
             .delete().addOnSuccessListener {
                 basket_list.remove(product)
+                calculateTotalPrice()
                 basketListLiveData.postValue(basket_list)
             }
      }
+
+
+    fun calculateTotalPrice(){
+        var totalPrice = 0f
+        for (i in basket_list){
+            totalPrice += i.price
+        }
+        println("postlanmadan önce total price: $totalPrice")
+        totalPriceLiveData.postValue(totalPrice)
+    }
+
+    fun buyNow(){
+        for (i in basket_list){
+            i.isInBasket = false
+            db.collection("userUID")
+                .document("basket")
+                .collection("productsInBasket")
+                .document(i.id.toString())
+                .delete()
+        }
+        basket_list.clear()
+        totalPriceLiveData.postValue(0f)
+
+        basketListLiveData.postValue(basket_list)
+
+
+    }
+
 }
