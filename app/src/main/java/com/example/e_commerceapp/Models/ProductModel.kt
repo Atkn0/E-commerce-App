@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class ProductModel(
     val id:Int,
     val title:String,
-    val price: Float,
+    var price: Float,
     val description:String,
     val image:String,
     var isSelected:Boolean = false,
