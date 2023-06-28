@@ -46,7 +46,7 @@ class BasketFragment : Fragment() {
 
         binding.emptyBasketAnimation.playAnimation()
 
-        adapter = BasketRecyclerViewAdapter(arrayListOf())
+        adapter = BasketRecyclerViewAdapter(arrayListOf(),basketViewModel)
         binding.BasketRecyclerView.adapter = adapter
         binding.BasketRecyclerView.setHasFixedSize(true)
         binding.BasketRecyclerView.layoutManager = LinearLayoutManager(context)

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.Models.ProductModel
+import com.example.e_commerceapp.ViewModels.BasketFragmentViewModel
 import com.example.e_commerceapp.databinding.ProductBasketLayoutBinding
 import com.squareup.picasso.Picasso
 
-class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):RecyclerView.Adapter<BasketRecyclerViewAdapter.BasketViewHolder>() {
+class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>,private val basketFragmentViewModel: BasketFragmentViewModel):RecyclerView.Adapter<BasketRecyclerViewAdapter.BasketViewHolder>() {
+
 
 
     var onProductDeleteClick: ((ProductModel) -> Unit)? = null
@@ -49,6 +51,9 @@ class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):
             holder.binding.ProductCountTextView.text = count.toString()
             val newProductPrice = product.price * count
             holder.binding.ProductPriceBaskettextView.text = newProductPrice.toString()
+            basketFragmentViewModel.totalPriceLiveData.value = basketFragmentViewModel.totalPriceLiveData.value?.plus(
+                product.price
+            )
         }
 
         holder.binding.minusButton.setOnClickListener {
@@ -58,6 +63,10 @@ class BasketRecyclerViewAdapter(private val basketList:ArrayList<ProductModel>):
                 holder.binding.ProductCountTextView.text = count.toString()
                 val newProductPrice = product.price * count
                 holder.binding.ProductPriceBaskettextView.text = newProductPrice.toString()
+                basketFragmentViewModel.totalPriceLiveData.value = basketFragmentViewModel.totalPriceLiveData.value?.minus(
+                    product.price
+                )
+
             }
         }
 

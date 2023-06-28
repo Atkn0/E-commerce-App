@@ -74,7 +74,6 @@ class BasketFragmentViewModel : ViewModel() {
         }
         basket_list.clear()
         totalPriceLiveData.postValue(0f)
-
         basketListLiveData.postValue(basket_list)
 
 
