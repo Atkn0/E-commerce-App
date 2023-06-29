@@ -5,8 +5,8 @@ This is a Kotlin Ecommerce project using firebase firestore and public API.
 - The project is made for learning purposes, so you can make a contribution.
 
 ## Demo
+Screenshots/demo_video.mp4
 
-Demoya gif veya bağlantı ekleyin
 
 ## Features
 
