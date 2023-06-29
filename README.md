@@ -15,9 +15,9 @@ Demoya gif veya bağlantı ekleyin
 - Add to cart
 - Change the number of items in the cart
 
-## Screenshots
+# Screenshots
 
-# Homepage
+## Homepage
 
 <p float="left">
   <img src="Screenshots/home_page.png" width="250" />
@@ -25,7 +25,7 @@ Demoya gif veya bağlantı ekleyin
   <img src="Screenshots/search_view.png" width="250" />
 </p>
 
-# Favorite and Basket Pages
+## Favorite and Basket Pages
 <p float="left">
   <img src="Screenshots/empty_favorite.png" width="250" />
   <img src="Screenshots/favorite.png" width="250" /> 
