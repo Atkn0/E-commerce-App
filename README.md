@@ -33,6 +33,13 @@ Demoya gif veya bağlantı ekleyin
   <img src="Screenshots/basket.png" width="250" />
 </p>
 
+# Detail Page
+<p float="left">
+  <img src="Screenshots/detail_1.png" width="250" />
+  <img src="Screenshots/detail_2.png" width="250" /> 
+
+</p>
+
 
 ## Technologies
 
