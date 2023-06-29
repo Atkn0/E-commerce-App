@@ -17,7 +17,7 @@ Demoya gif veya bağlantı ekleyin
 
 ## Screenshots
 
-![Uygulama Ekran Görüntüsü](Screenshots/alert_dialog.png)
+![Uygulama Ekran Görüntüsü](Screenshots/alert_dialog.png , Screenshots/basket.png)
 
 
 ## Technologies
