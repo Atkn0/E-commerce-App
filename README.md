@@ -17,7 +17,7 @@ Demoya gif veya bağlantı ekleyin
 
 ## Screenshots
 
-![Uygulama Ekran Görüntüsü]()
+![Uygulama Ekran Görüntüsü](Screenshots/alert_dialog.png)
 
 
 ## Technologies
