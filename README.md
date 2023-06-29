@@ -22,7 +22,7 @@ Demoya gif veya bağlantı ekleyin
 <p float="left">
   <img src="Screenshots/home_page.png" width="250" />
   <img src="Screenshots/home_page_scroll.png" width="250" /> 
-  <img src="Screenshots/search_view.png" width="250" />
+  <img src="Screenshots/search_view2.png" width="250" />
 </p>
 
 ## Favorite Page
