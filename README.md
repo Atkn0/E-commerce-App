@@ -17,7 +17,11 @@ Demoya gif veya bağlantı ekleyin
 
 ## Screenshots
 
-![Uygulama Ekran Görüntüsü](Screenshots/alert_dialog.png) ![Uygulama Ekran Görüntüsü](Screenshots/alert_dialog.png)
+<p float="left">
+  <img src="/path/to/image1.png" width="100" />
+  <img src="/path/to/image2.png" width="100" /> 
+  <img src="/path/to/image3.png" width="100" />
+</p>
 
 
 ## Technologies
