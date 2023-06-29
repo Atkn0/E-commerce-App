@@ -29,14 +29,13 @@ Demoya gif veya bağlantı ekleyin
 <p float="left">
   <img src="Screenshots/empty_favorite.png" width="250" />
   <img src="Screenshots/favorite.png" width="250" /> 
-  <img src="Screenshots/empty_basket.png" width="250" />
-  <img src="Screenshots/basket.png" width="250" />
 </p>
 
 ## Basket Page
 <p float="left">
   <img src="Screenshots/empty_basket.png" width="250" />
   <img src="Screenshots/basket.png" width="250" /> 
+  <img src="Screenshots/alert_dialog.png" width="250" /> 
  
 </p>
 
@@ -46,6 +45,7 @@ Demoya gif veya bağlantı ekleyin
   <img src="Screenshots/detail_2.png" width="250" /> 
 
 </p>
+
 
 
 ## Technologies
