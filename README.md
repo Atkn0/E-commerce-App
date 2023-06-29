@@ -17,11 +17,15 @@ Demoya gif veya bağlantı ekleyin
 
 ## Screenshots
 
+# Homepage
+
 <p float="left">
   <img src="Screenshots/home_page.png" width="250" />
   <img src="Screenshots/home_page_scroll.png" width="250" /> 
   <img src="Screenshots/search_view.png" width="250" />
 </p>
+
+# Favorite and Basket Pages
 <p float="left">
   <img src="Screenshots/empty_favorite.png" width="250" />
   <img src="Screenshots/favorite.png" width="250" /> 
