@@ -95,11 +95,11 @@ class BasketFragment : Fragment() {
             builder.setTitle("Do you want to make the purchase?")
             builder.setMessage("Total price: ${binding.totalPriceTextView.text}")
 
-            builder.setPositiveButton("Yes"){dialog, which ->
+            builder.setPositiveButton("Yes"){_, _ ->
                 basketViewModel.buyNow()
                 mainActivityViewModel.getFirstBasketCount()
             }
-            builder.setNegativeButton("No"){dialog, which ->
+            builder.setNegativeButton("No"){dialog, _ ->
                 dialog.dismiss()
             }
             builder.show()
