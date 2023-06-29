@@ -18,9 +18,9 @@ Demoya gif veya bağlantı ekleyin
 ## Screenshots
 
 <p float="left">
-  <img src="/path/to/image1.png" width="100" />
-  <img src="/path/to/image2.png" width="100" /> 
-  <img src="/path/to/image3.png" width="100" />
+  <img src="Screenshots/home_page.png" width="100" />
+  <img src="Screenshots/home_page_scroll.png" width="100" /> 
+  <img src="Screenshots/search_view.png" width="100" />
 </p>
 
 
